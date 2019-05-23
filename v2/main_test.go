@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"testing"
+	"net/http/httptest"
 )
 
 func TestGetEntries(t *testing.T) {
@@ -16,7 +17,7 @@ func TestGetEntries(t *testing.T) {
 
 func executeRequest(req *http.Request) *httptest.ResponseRecorder {
     rr := httptest.NewRecorder()
-    a.Router.ServeHTTP(rr, req)
+    rr.Router.ServeHTTP(rr, req)
 
     return rr
 }
