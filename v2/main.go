@@ -1,4 +1,4 @@
-package globant
+package main
 
 import (
 	"fmt"
