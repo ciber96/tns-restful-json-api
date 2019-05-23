@@ -3,7 +3,8 @@ package main
 import (
 	"net/http"
 	"testing"
-	"net/http/httptest"
+    "net/http/httptest"
+    "github.com/gorilla/mux"
 )
 
 func TestGetEntries(t *testing.T) {
