@@ -26,7 +26,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestGetBudgets(t *testing.T) {
-    res, err := test.DoRequest(testServer, "GET", "/budgets", nil)
+    res, err := test.DoRequest(testServer, "GET", "/", nil)
     assert.NoError(t, err)
     assert.Equal(t, res.Code, http.StatusOK)
 }
