@@ -4,6 +4,7 @@ import(
 	"testing"
 	"net/http"
 	"io/ioutil"
+	"log"
 )
 
 
@@ -19,4 +20,5 @@ func TestMain(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	log.Println(string(body))
 }
