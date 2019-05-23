@@ -3,18 +3,14 @@ package main
 import (
 	"net/http"
 	"testing"
+	"net/http/httptest"
 )
 
 func TestGetEntries(t *testing.T) {
-	req, err := http.NewRequest("GET", "/", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(TestGetEntries)
-	handler.ServeHTTP(rr, req)
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusOK)
-	}
+	req, _ := http.NewRequest("GET", "/users", nil)
+    response := executeRequest(req)
+    checkResponseCode(t, http.StatusOK, response.Code)
+    if body := response.Body.String(); body != "Hello, / | Production Branch" {
+        t.Errorf("Expected an empty array. Got %s", body)
+    }
 }
