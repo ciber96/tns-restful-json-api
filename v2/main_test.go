@@ -15,7 +15,7 @@ func TestMain(t *testing.T) {
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		t.Fatal(err)
 	}
