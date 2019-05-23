@@ -17,7 +17,7 @@ func TestGetEntries(t *testing.T) {
 
 func executeRequest(req *http.Request) *httptest.ResponseRecorder {
     rr := httptest.NewRecorder()
-    rr.Router.ServeHTTP(rr, req)
+    main.Router.ServeHTTP(rr, req)
 
     return rr
 }
