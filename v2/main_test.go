@@ -7,7 +7,7 @@ import (
     "github.com/gorilla/mux"
 )
 
-func TestGetEntries(t *testing.T) {
+func TestIndex(t *testing.T) {
 	req, _ := http.NewRequest("GET", "/", nil)
     response := executeRequest(req)
     checkResponseCode(t, http.StatusOK, response.Code)
