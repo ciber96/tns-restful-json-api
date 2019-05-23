@@ -17,6 +17,7 @@ func TestGetEntries(t *testing.T) {
 
 func executeRequest(req *http.Request) *httptest.ResponseRecorder {
     rr := httptest.NewRecorder()
+    Router := mux.NewRouter()
     Router.ServeHTTP(rr, req)
 
     return rr
