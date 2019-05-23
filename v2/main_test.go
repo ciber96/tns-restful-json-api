@@ -9,7 +9,7 @@ import(
 
 
 func TestMain(t *testing.T) {
-	resp, err := http.Get("/")
+	resp, err := http.Get("localhost:8080")
 	if err != nil {
 		t.Fatal(err)
 	}
