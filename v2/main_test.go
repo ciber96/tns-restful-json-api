@@ -1,31 +1,32 @@
 package main
 
 import (
-	"net/http"
-	"testing"
-    "net/http/httptest"
+    "net/http"
+    "os"
+    "testing"
+
+    "github.com/azbshiri/common/test"
+    "github.com/go-pg/pg"
     "github.com/gorilla/mux"
+    "github.com/stretchr/testify/assert"
 )
 
-func TestMain(t *testing.T) {
-	req, _ := http.NewRequest("GET", "/", nil)
-    response := executeRequest(req)
-    checkResponseCode(t, http.StatusOK, response.Code)
-    if body := response.Body.String(); body != "Hello, / | Production Branch" {
-        t.Errorf("Expected an empty array. Got %s", body)
-    }
+var testServer *server
+
+func TestMain(m *testing.M) {
+    testServer = newServer(
+        pg.Connect(&pg.Options{
+            User:     "alireza",
+            Password: "alireza",
+            Database: "alireza",
+        }),
+        mux.NewRouter(),
+    )
+    os.Exit(m.Run())
 }
 
-func executeRequest(req *http.Request) *httptest.ResponseRecorder {
-    rr := httptest.NewRecorder()
-    Router := mux.NewRouter()
-    Router.ServeHTTP(rr, req)
-
-    return rr
-}
-
-func checkResponseCode(t *testing.T, expected, actual int) {
-    if expected != actual {
-        t.Errorf("Expected response code %d. Got %d\n", expected, actual)
-    }
+func TestGetBudgets(t *testing.T) {
+    res, err := test.DoRequest(testServer, "GET", "/budgets", nil)
+    assert.NoError(t, err)
+    assert.Equal(t, res.Code, http.StatusOK)
 }
