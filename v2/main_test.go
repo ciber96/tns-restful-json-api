@@ -1,6 +1,12 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"html"
+	"log"
+	"net/http"
+	"testing"
+)
 
 func TestGetEntries(t *testing.T) {
 	req, err := http.NewRequest("GET", "/", nil)
