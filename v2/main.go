@@ -17,5 +17,5 @@ func main() {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q | Production Branch asd", html.EscapeString(r.URL.Path))
+	fmt.Fprintf(w, "Hello, %q | Production Branch", html.EscapeString(r.URL.Path))
 }
