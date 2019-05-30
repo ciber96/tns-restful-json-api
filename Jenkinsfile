@@ -9,7 +9,7 @@ node {
           sh label: '', script: 'go get github.com/gorilla/mux'
       }
    }
-   stage('Unit Tests') {
+   stage('Tests') {
       // Run the go tests
       withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
         sh label: '', script: 'cd v2 && go test .'
